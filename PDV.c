@@ -21,6 +21,9 @@ struct produto{
     char buscar[100];
     // opcao
     int opcao;
+	//alts
+	char alt_produto[100];
+	char alt_categoria[100];
 
 }cadastro;
 
