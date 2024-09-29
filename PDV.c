@@ -1,3 +1,12 @@
+                             //BIBLIOTECAS DECLARADAS
+#include<stdio.h>
+#include<locale.h>
+#include<string.h> 
+#include<stdlib.h>
+#define NULO '\0'
+
+// Entidade do produto
+// Refatorar os updates
 struct produto{
 	
 	FILE *arq;
@@ -27,8 +36,11 @@ struct produto{
 	//editions variables
 	char edit_produto;
 	char edit_categoria[100];
+	
+
 
 }cadastro;
+
 int main(void){
 	
 	setlocale(LC_ALL,"Portuguese");
@@ -104,6 +116,8 @@ int main(void){
    Sleep(1000);
    printf("\n-------------VOLTE SEMPRE!!---------------"); //MENSAGEM DE SAÍDA DO PROGRAMA
 }
+}
+// crud
 
 void adicionar(){
     int _id_STORAGE = 0;
@@ -230,6 +244,17 @@ void buscar(){
 	system("pause"); 
 	system ("clear");
 }
+                                        //MENU PRINCIPAL
+	
+
+
+
+
+
+                            //ESPECIFICANDO A FUNÇÃO DE CADASTRO
+
+
+                                //ESPECIFICANDO A FUNÇÃO DE LISTAR
 void listar(){
 	
 cadastro.arq = fopen("func.txt", "r");
@@ -291,6 +316,7 @@ system("pause");
 system ("clear");
 }
 
+
 void editar(){
 
 	cadastro.arq = fopen("func.txt", "r");
@@ -312,27 +338,27 @@ void editar(){
 	
 	rewind(cadastro.arq);
 	fflush(stdin);
-	printf("Digite a profissão que deseja alterar:");
-	fgets(cadastro.alt_produto, 100, stdin);    
-	cadastro.alt_profi[strlen(cadastro.alt_profi) -1] = 0;    
+	printf("Digite a categoria que deseja alterar:");
+	fgets(cadastro.alt_categoria, 100, stdin);    
+	cadastro.alt_categoria[strlen(cadastro.alt_produto) -1] = 0;    
 	do{
-		fgets(cadastro.profissao, 1000, cadastro.arq);        
+		fgets(cadastro.Categoria, 1000, cadastro.arq);        
 		alcan++;        
-		if(strstr(cadastro.profissao, cadastro.alt_profi) != NULL){
+		if(strstr(cadastro.Categoria, cadastro.alt_categoria) != NULL){
 		//printf("Linha %d: %s", bli, login.nome_trocar);
 		pegar = alcan;         
 	}				    
 	}while(!feof(cadastro.arq));
 	rewind(cadastro.arq);
 	
-	printf("\nQual profissão gostaria de colocar no lugar?");
-	fgets(cadastro.tra_profi, 100, stdin); 
+	printf("\nQual categoria gostaria de colocar no lugar?");
+	fgets(cadastro.edit_categoria, 100, stdin); 
 	//fflush(stdin);
 	for(li = 0; !feof(cadastro.arq);li++){
 	memset(nometrocar, NULO, 100); 
 	fgets(nometrocar, 101, cadastro.arq);
 	if(linha == pegar){
-		fprintf(cadastro.arq_temp, "Profissão - %s", cadastro.tra_profi); 
+		fprintf(cadastro.arq_temp, "Categoria - %s", cadastro.edit_categoria); 
 		//fputs("", cadastro.arquivo_new); 
 		linha = linha + 1; 
 		valida = 1;
@@ -357,7 +383,6 @@ void editar(){
 	system("pause"); 
 	system ("clear");
 	}
-
 void apagar(){
 	int alcan = 0;
 	int pegar;
@@ -371,8 +396,8 @@ void apagar(){
 printf("-----------------------------------------------------------------------\n");
 printf("|                        APAGAR CADASTRO                                |\n");
 printf("-----------------------------------------------------------------------\n\n ");
-printf("\n\n Digite o nome do funcionário que deseja apagar o cadastro: \n");
-fgets(cadastro.alt_profi, 100, stdin);
+printf("\n\n Digite o nome do produto que deseja apagar o cadastro: \n");
+fgets(cadastro.alt_produto, 100, stdin);
 
 if(linha == pegar){
 fputs("", cadastro.arquivo_new); 
@@ -380,7 +405,7 @@ linha = linha + 1;
 valida = 1;
 }
 linha = linha + 1; 
-fputs(cadastro.alt_profi, cadastro.arq_temp);
+fputs(cadastro.alt_produto, cadastro.arq_temp);
 	
 if(valida == 1){
 printf("\n Cadastro apagado!!\n");
