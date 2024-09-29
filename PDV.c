@@ -58,6 +58,47 @@ int main(void){
 	printf("\n   |                                                         |");
 	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
 	printf("\n\n\n Por favor, digite uma opção:");
+	scanf("%d",&cadastro.opcao);
+	
+	
+	                          // ESTRUTURA SWITCH P/AS OPÇÕES DE CADASTRO
+	switch(cadastro.opcao){    
+		case 1:
+			printf(" Processando...");
+			Sleep(2000);
+			system("clear");
+			adicionar();
+	    	break;
+	    case 2:
+	        printf(" Processando...");
+			Sleep(2000);
+			system("clear");
+			listar();
+	    	break;
+	    case 3:
+	        printf(" Processando...");
+			Sleep(2000);
+			system("clear");
+			buscar();
+	        break;
+	    case 4:
+	        printf(" Processando...");
+			Sleep(2000);
+			system("clear");
+			editar();
+	        break;
+	    case 5:
+	    	printf(" Processando...");
+			Sleep(2000);
+			system("clear");
+			deletar();
+	    case 0:
+	        
+	        break;
+	                		
+	    default:
+	        printf("\n\n [!]ERRO [!]");                      //MENSAGEM DE ERRO PADRÃO
+	    	printf("\n Desculpe,opção inválida.");
 
 void adicionar(){
     int _id_STORAGE = 0;
