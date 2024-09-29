@@ -24,3 +24,41 @@ struct produto{
 
 }cadastro;
 
+void adicionar(){
+    int _id_STORAGE = 0;
+	cadastro.arq = fopen("produtos.txt", "a"); //DECLARAÇÃO DO ARQUIVO PARA ARMAZENAR OS DADOS DO CADASTRO
+	
+	do{
+		fflush(stdin); //função p limpar o buffer de saída/entrada
+		
+        printf("Digite o nome do produto:");
+		gets(cadastro.nomeDoProduto);
+
+
+		if(cadastro.nomeDoProduto)
+
+		fprintf(cadastro.arq, "Nome - %s\n", cadastro.nomeDoProduto);//COMANDO P ARMAZENAMENTO NO ARQUIVO
+		
+        printf("Digite a categoria do produto:");
+		gets(cadastro.Categoria);
+		fprintf(cadastro.arq, "Profissão - %s\n", cadastro.Categoria);
+
+		fprintf(cadastro.arq,"\n-------------------------------\n"); //organizar o arquivo
+		printf("\nQuer continuar? [S/N]:");
+		gets(cadastro.continuar);
+	
+		if(strcmp(cadastro.continuar,"s") == 0){
+           	_id_STORAGE++;
+            cadastro.id = _id_STORAGE;
+
+            // increment
+
+
+			printf("Ok vamos continuar...");
+			system ("clear");
+		}
+		
+	}while(strcmp(cadastro.continuar,"s") == 0);
+	fclose(cadastro.arq);
+	system ("clear");
+}
