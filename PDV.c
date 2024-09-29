@@ -276,3 +276,45 @@ void editar(){
 	system("pause"); 
 	system ("clear");
 	}
+
+void apagar(){
+	int alcan = 0;
+	int pegar;
+	int li;
+	int linha = 1;
+	int valida = 0;
+	char nometrocar[100];
+	cadastro.arq = fopen("func.txt", "r");
+    cadastro.arq_temp = fopen("func_temp.txt", "w");
+
+printf("-----------------------------------------------------------------------\n");
+printf("|                        APAGAR CADASTRO                                |\n");
+printf("-----------------------------------------------------------------------\n\n ");
+printf("\n\n Digite o nome do funcionário que deseja apagar o cadastro: \n");
+fgets(cadastro.alt_profi, 100, stdin);
+
+if(linha == pegar){
+fputs("", cadastro.arquivo_new); 
+linha = linha + 1; 
+valida = 1;
+}
+linha = linha + 1; 
+fputs(cadastro.alt_profi, cadastro.arq_temp);
+	
+if(valida == 1){
+printf("\n Cadastro apagado!!\n");
+}
+if(valida == 0){
+printf("\nCadastro não apagado\n");
+}	
+if(valida == 1){
+valida = 0;
+}
+
+fclose(cadastro.arq); 
+fclose(cadastro.arq_temp); 
+remove("func.txt");
+rename("func_temp.txt", "func.txt");
+system("pause");
+system("clear");
+}
