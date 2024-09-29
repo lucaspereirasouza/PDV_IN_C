@@ -24,6 +24,9 @@ struct produto{
 	//alts
 	char alt_produto[100];
 	char alt_categoria[100];
+	//editions variables
+	char edit_produto;
+	char edit_categoria[100];
 
 }cadastro;
 
