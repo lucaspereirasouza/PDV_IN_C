@@ -29,6 +29,7 @@ struct produto{
 	char edit_categoria[100];
 
 }cadastro;
+	setlocale(LC_ALL,"Portuguese");
 
 void adicionar(){
     int _id_STORAGE = 0;
