@@ -29,7 +29,35 @@ struct produto{
 	char edit_categoria[100];
 
 }cadastro;
+int main(void){
+	
 	setlocale(LC_ALL,"Portuguese");
+	
+	do{
+	
+	printf("\n   ---------------------PDV Hortifruti v0.1------------------");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |         MENU PRINCIPAL                                  |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |         1-Adicionar produto                             |");
+	printf("\n   |         2-Exibir lista de produtos                      |");
+	printf("\n   |         3-Buscar produto                                |");
+	printf("\n   |         4-Editar produto                                |");
+	printf("\n   |         5-Apagar produto                                |");
+	printf("\n   |         0-Encerrar aplicacao                            |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+ 	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
+	printf("\n\n\n Por favor, digite uma opção:");
 
 void adicionar(){
     int _id_STORAGE = 0;
