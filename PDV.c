@@ -99,6 +99,11 @@ int main(void){
 	    default:
 	        printf("\n\n [!]ERRO [!]");                      //MENSAGEM DE ERRO PADRÃO
 	    	printf("\n Desculpe,opção inválida.");
+	}}while(cadastro.opcao!=0);{
+   printf(" Processando...");
+   Sleep(1000);
+   printf("\n-------------VOLTE SEMPRE!!---------------"); //MENSAGEM DE SAÍDA DO PROGRAMA
+}
 
 void adicionar(){
     int _id_STORAGE = 0;
