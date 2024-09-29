@@ -209,3 +209,70 @@ fclose(cadastro.arq);
 system("pause"); 
 system ("clear");
 }
+
+void editar(){
+
+	cadastro.arq = fopen("func.txt", "r");
+	cadastro.arq_temp = fopen("func_temp.txt", "w");
+	
+	int alcan = 0;
+	int pegar;
+	int li;
+	int linha = 1;
+	int valida = 0;
+	char nometrocar[100];
+	
+   printf("*-----------------------------------------------------------------------*\n");
+   printf("|                         EDITAR PRODUTO                                |\n");
+   printf("*-----------------------------------------------------------------------*\n\n\n ");
+	
+	
+	
+	
+	rewind(cadastro.arq);
+	fflush(stdin);
+	printf("Digite a profissão que deseja alterar:");
+	fgets(cadastro.alt_produto, 100, stdin);    
+	cadastro.alt_profi[strlen(cadastro.alt_profi) -1] = 0;    
+	do{
+		fgets(cadastro.profissao, 1000, cadastro.arq);        
+		alcan++;        
+		if(strstr(cadastro.profissao, cadastro.alt_profi) != NULL){
+		//printf("Linha %d: %s", bli, login.nome_trocar);
+		pegar = alcan;         
+	}				    
+	}while(!feof(cadastro.arq));
+	rewind(cadastro.arq);
+	
+	printf("\nQual profissão gostaria de colocar no lugar?");
+	fgets(cadastro.tra_profi, 100, stdin); 
+	//fflush(stdin);
+	for(li = 0; !feof(cadastro.arq);li++){
+	memset(nometrocar, NULO, 100); 
+	fgets(nometrocar, 101, cadastro.arq);
+	if(linha == pegar){
+		fprintf(cadastro.arq_temp, "Profissão - %s", cadastro.tra_profi); 
+		//fputs("", cadastro.arquivo_new); 
+		linha = linha + 1; 
+		valida = 1;
+		continue; 
+	}
+	linha = linha + 1; 
+	fputs(nometrocar, cadastro.arq_temp);
+	}
+	if(valida == 1){
+		printf("\nProfissão alterada!\n");
+	}
+	if(valida == 0){
+		printf("\nProfissão não alterada!\n");
+	}	
+	if(valida == 1){
+		valida = 0;
+	}
+	fclose(cadastro.arq); 
+	fclose(cadastro.arq_temp); 
+	remove("func.txt");
+	rename("func_temp.txt", "func.txt");
+	system("pause"); 
+	system ("clear");
+	}
