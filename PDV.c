@@ -149,3 +149,63 @@ void buscar(){
 	system("pause"); 
 	system ("clear");
 }
+void listar(){
+	
+cadastro.arq = fopen("func.txt", "r");
+int i;
+char listas[200];
+
+
+while(fgets(listas,200,cadastro.arq)!=NULL){ 
+
+	printf("%s",listas); //printf p imprimir a lista na tela
+
+}
+fclose(cadastro.arq);
+system("pause"); 
+system ("clear");
+}
+
+void buscar(){
+cadastro.arq = fopen("func.txt", "rb");
+
+
+printf("*-----------------------------------------------------------------------*\n");
+printf("|                       BUSCAR FUNCIONÁRIO                              |\n");
+printf("*-----------------------------------------------------------------------*\n\n\n ");
+printf("Por favor,informe o nome do funcionário que deseja buscar:\n");
+fflush(stdin);
+scanf("%s",cadastro.buscar);
+
+// exibir categoria
+	printf("\n   ----------------------------------------------------------");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                     Oque deseja editar                  |");
+	printf("\n   |                     do produto?                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |         1-Cadastrar                                     |");
+	printf("\n   |         2-Exibir lista de produtos                      |");
+	printf("\n   |         3-Buscar funcionário                            |");
+	printf("\n   |         4-Editar produto                                |");
+	printf("\n   |         5-Apagar cadastro                               |");
+	printf("\n   |         0-Encerrar sessão                               |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+ 	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   | Programadora: Brenda Beato                              |");
+	printf("\n   -------------------T.I ENTERPRISES-----------------------");
+	printf("\n\n\n Por favor, digite uma opção:");
+	scanf("%d",&cadastro.opcao);
+
+
+
+fclose(cadastro.arq);
+system("pause"); 
+system ("clear");
+}
