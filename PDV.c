@@ -6,7 +6,7 @@
 #include<unistd.h>
 
 #define NULO '\0'
-#define TIME 1
+#define TIME 500
 #define LIMIT 100
 // Entidade do produto
 // Refatorar os updates
