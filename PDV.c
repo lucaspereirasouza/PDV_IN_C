@@ -136,17 +136,16 @@ void adicionar(){
 	do{
 		fflush(stdin); //função p limpar o buffer de saída/entrada
 		
-        printf("Digite o nome do produto:");
-		gets(cadastro.nomeDoProduto);
-
+        printf("\nDigite o nome do produto:");
+		scanf("%s", &cadastro.nomeDoProduto);
 
 		if(cadastro.nomeDoProduto)
 
 		fprintf(cadastro.arq, "Nome - %s\n", cadastro.nomeDoProduto);//COMANDO P ARMAZENAMENTO NO ARQUIVO
 		
         printf("Digite a categoria do produto:");
-		gets(cadastro.Categoria);
-		fprintf(cadastro.arq, "Profissão - %s\n", cadastro.Categoria);
+		scanf("%s", &cadastro.Categoria);
+		fprintf(cadastro.arq, "produto - %s\n", cadastro.Categoria);
 
 		fprintf(cadastro.arq,"\n-------------------------------\n"); //organizar o arquivo
 		printf("\nQuer continuar? [S/N]:");
