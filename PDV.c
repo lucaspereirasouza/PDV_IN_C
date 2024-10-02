@@ -3,6 +3,7 @@
 #include<locale.h>
 #include<string.h> 
 #include<stdlib.h>
+#include<unistd.h>
 #define NULO '\0'
 
 // Entidade do produto
