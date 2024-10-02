@@ -4,8 +4,10 @@
 #include<string.h> 
 #include<stdlib.h>
 #include<unistd.h>
-#define NULO '\0'
 
+#define NULO '\0'
+#define TIME 1
+#define LIMIT 100
 // Entidade do produto
 // Refatorar os updates
 
@@ -80,68 +82,75 @@ int main(void){
 	printf("\n   |                                                         |");
 	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
 	printf("\n\n\n Por favor, digite uma opção:");
+	cadastro.opcao = 1;
 	scanf("%d",&cadastro.opcao);
-	
 	
 	                          // ESTRUTURA SWITCH P/AS OPÇÕES DE CADASTRO
 	switch(cadastro.opcao){    
 		case 1:
 			printf(" Processando...");
-			Sleep(2000);
+			sleep(TIME);
 			system("clear");
 			adicionar();
 	    	break;
 	    case 2:
 	        printf(" Processando...");
-			Sleep(2000);
+			sleep(TIME);
 			system("clear");
 			listar();
 	    	break;
 	    case 3:
 	        printf(" Processando...");
-			Sleep(2000);
+			sleep(TIME);
 			system("clear");
 			buscar();
 	        break;
 	    case 4:
 	        printf(" Processando...");
-			Sleep(2000);
+			sleep(TIME);
 			system("clear");
 			editar();
 	        break;
 	    case 5:
 	    	printf(" Processando...");
-			Sleep(2000);
+			sleep(TIME);
 			system("clear");
-			deletar();
+			// deletar();
 	    case 0:
-	        
-	        break;
-	                		
+	        return 0;   		
 	    default:
 	        printf("\n\n [!]ERRO [!]");                      //MENSAGEM DE ERRO PADRÃO
 	    	printf("\n Desculpe,opção inválida.");
 	}}while(cadastro.opcao!=0);{
    printf(" Processando...");
-   Sleep(1000);
+   sleep(1000);
    printf("\n-------------VOLTE SEMPRE!!---------------"); //MENSAGEM DE SAÍDA DO PROGRAMA
 }
 }
 // crud
 
 void adicionar(){
-    int _id_STORAGE = 0;
+
 	cadastro.arq = fopen("produtos.txt", "a"); //DECLARAÇÃO DO ARQUIVO PARA ARMAZENAR OS DADOS DO CADASTRO
 	
 	do{
-		fflush(stdin); //função p limpar o buffer de saída/entrada
+		// fflush(stdin); //função p limpar o buffer de saída/entrada
 		
         printf("\nDigite o nome do produto:");
 		scanf("%s", &cadastro.nomeDoProduto);
 
-		if(cadastro.nomeDoProduto)
+		if(!cadastro.nomeDoProduto=="")
+		
 
-		fprintf(cadastro.arq, "Nome - %s\n", cadastro.nomeDoProduto);//COMANDO P ARMAZENAMENTO NO ARQUIVO
+
+
+
+		_id_STORAGE++;
+		cadastro.id = _id_STORAGE;
+		fprintf(cadastro.arq, "id do produto - %d:", cadastro.id);
+		fprintf(cadastro.arq, "\n  Nome - %s\n", cadastro.nomeDoProduto);//COMANDO P ARMAZENAMENTO NO ARQUIVO
+		
+        
 		
         printf("Digite a categoria do produto:");
 		scanf("%s", &cadastro.Categoria);
@@ -152,8 +161,7 @@ void adicionar(){
 		gets(cadastro.continuar);
 	
 		if(strcmp(cadastro.continuar,"s") == 0){
-           	_id_STORAGE++;
-            cadastro.id = _id_STORAGE;
+           	
 
             // increment
 
@@ -185,16 +193,10 @@ void buscar(){
     // Counters
 	int counter_produto = 0;
 	int counter_categoria = 0;
-	//
-    int j2 = 0;
 
 	// Bools
     int bol_produto;
 	int bol_categoria;
-
-
-    // teste
-	int teste;
  
 	//char listas[200];
 
@@ -205,14 +207,14 @@ void buscar(){
 	fflush(stdin);
 	printf("Por favor,informe o nome do produto que deseja buscar:\n");
 
-	fgets(cadastro.buscar_Produto, 100, stdin);    
+	fgets(cadastro.buscar_Produto, LIMIT, stdin);    
 
-	cadastro.buscar[strlen(cadastro.buscar) -1] = 0;  
+	cadastro.buscar_Produto[strlen(cadastro.buscar) -1] = 0;  
 
 	do{
-		fgets(cadastro.nomeDoProduto, 100, cadastro.arq);        
-		counter_produto++;        
-		if(strstr(cadastro.nomeDoProduto, cadastro.nomeDoProduto) != NULL){
+		fgets(cadastro.nomeDoProduto, LIMIT, cadastro.arq);        
+		counter_produto++;
+		if(strstr(cadastro.buscar_Produto, cadastro.nomeDoProduto) != NULL){
 			//printf("Linha %d: %s", j, cadastro.buscar);
 			bol_produto = 1;
 			break; 
@@ -223,10 +225,10 @@ void buscar(){
 	}while(!feof(cadastro.arq));
 	rewind(cadastro.arq);
 	printf("Por favor,informe a categoria do produto que deseja buscar:\n");
-	fgets(cadastro.Categoria, 100, stdin);    
+	fgets(cadastro.Categoria, LIMIT, stdin);    
 	cadastro.Categoria[strlen(cadastro.Categoria) -1] = 0;  
 	do{
-		fgets(cadastro.Categoria, 1000, cadastro.arq);        
+		fgets(cadastro.Categoria, LIMIT, cadastro.arq);        
 		counter_categoria++;        
 		if(strstr(cadastro.Categoria, cadastro.buscar_categoria) != NULL){
 			//printf("Linha %d: %s", j1, cadastro.buscar_profissao);
@@ -253,17 +255,6 @@ void buscar(){
 	system("pause"); 
 	system ("clear");
 }
-                                        //MENU PRINCIPAL
-	
-
-
-
-
-
-                            //ESPECIFICANDO A FUNÇÃO DE CADASTRO
-
-
-                                //ESPECIFICANDO A FUNÇÃO DE LISTAR
 void listar(){
 	
 cadastro.arq = fopen("func.txt", "r");
@@ -281,49 +272,6 @@ system("pause");
 system ("clear");
 }
 
-void buscar(){
-cadastro.arq = fopen("func.txt", "rb");
-
-
-printf("*-----------------------------------------------------------------------*\n");
-printf("|                       BUSCAR FUNCIONÁRIO                              |\n");
-printf("*-----------------------------------------------------------------------*\n\n\n ");
-printf("Por favor,informe o nome do funcionário que deseja buscar:\n");
-fflush(stdin);
-scanf("%s",cadastro.buscar);
-
-// exibir categoria
-	printf("\n   ----------------------------------------------------------");
-	printf("\n   |                                                         |");
-	printf("\n   |                                                         |");
-	printf("\n   |                     Oque deseja editar                  |");
-	printf("\n   |                     do produto?                         |");
-	printf("\n   |                                                         |");
-	printf("\n   |                                                         |");
-	printf("\n   |         1-Cadastrar                                     |");
-	printf("\n   |         2-Exibir lista de produtos                      |");
-	printf("\n   |         3-Buscar funcionário                            |");
-	printf("\n   |         4-Editar produto                                |");
-	printf("\n   |         5-Apagar cadastro                               |");
-	printf("\n   |         0-Encerrar sessão                               |");
-	printf("\n   |                                                         |");
-	printf("\n   |                                                         |");
- 	printf("\n   |                                                         |");
-	printf("\n   |                                                         |");
-	printf("\n   |                                                         |");
-	printf("\n   |                                                         |");
-	printf("\n   |                                                         |");
-	printf("\n   | Programadora: Brenda Beato                              |");
-	printf("\n   -------------------T.I ENTERPRISES-----------------------");
-	printf("\n\n\n Por favor, digite uma opção:");
-	scanf("%d",&cadastro.opcao);
-
-
-
-fclose(cadastro.arq);
-system("pause"); 
-system ("clear");
-}
 
 
 void editar(){
@@ -336,7 +284,7 @@ void editar(){
 	int li;
 	int linha = 1;
 	int valida = 0;
-	char nometrocar[100];
+	char nometrocar[LIMIT];
 	
    printf("*-----------------------------------------------------------------------*\n");
    printf("|                         EDITAR PRODUTO                                |\n");
@@ -348,7 +296,7 @@ void editar(){
 	rewind(cadastro.arq);
 	fflush(stdin);
 	printf("Digite a categoria que deseja alterar:");
-	fgets(cadastro.alt_categoria, 100, stdin);    
+	fgets(cadastro.alt_categoria, LIMIT, stdin);    
 	cadastro.alt_categoria[strlen(cadastro.alt_produto) -1] = 0;    
 	do{
 		fgets(cadastro.Categoria, 1000, cadastro.arq);        
@@ -361,10 +309,10 @@ void editar(){
 	rewind(cadastro.arq);
 	
 	printf("\nQual categoria gostaria de colocar no lugar?");
-	fgets(cadastro.edit_categoria, 100, stdin); 
+	fgets(cadastro.edit_categoria, LIMIT, stdin); 
 	//fflush(stdin);
 	for(li = 0; !feof(cadastro.arq);li++){
-	memset(nometrocar, NULO, 100); 
+	memset(nometrocar, NULO, LIMIT); 
 	fgets(nometrocar, 101, cadastro.arq);
 	if(linha == pegar){
 		fprintf(cadastro.arq_temp, "Categoria - %s", cadastro.edit_categoria); 
@@ -377,10 +325,10 @@ void editar(){
 	fputs(nometrocar, cadastro.arq_temp);
 	}
 	if(valida == 1){
-		printf("\nProfissão alterada!\n");
+		printf("\nproduto alterada!\n");
 	}
 	if(valida == 0){
-		printf("\nProfissão não alterada!\n");
+		printf("\nproduto não alterada!\n");
 	}	
 	if(valida == 1){
 		valida = 0;
@@ -398,7 +346,7 @@ void apagar(){
 	int li;
 	int linha = 1;
 	int valida = 0;
-	char nometrocar[100];
+	char nometrocar[LIMIT];
 	cadastro.arq = fopen("func.txt", "r");
     cadastro.arq_temp = fopen("func_temp.txt", "w");
 
@@ -406,7 +354,7 @@ printf("-----------------------------------------------------------------------\
 printf("|                        APAGAR CADASTRO                                |\n");
 printf("-----------------------------------------------------------------------\n\n ");
 printf("\n\n Digite o nome do produto que deseja apagar o cadastro: \n");
-fgets(cadastro.alt_produto, 100, stdin);
+fgets(cadastro.alt_produto, LIMIT, stdin);
 
 if(linha == pegar){
 fputs("", cadastro.arquivo_new); 
