@@ -8,6 +8,15 @@
 
 // Entidade do produto
 // Refatorar os updates
+
+void adicionar();
+void listaProdutos();
+void buscar();
+void listar();
+void editar();
+void apagar();
+
+
 struct produto{
 	
 	FILE *arq;
