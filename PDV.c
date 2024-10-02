@@ -24,33 +24,33 @@ struct produto{
 	FILE *arquivo_new;
     
     int id;
-	char nomeDoProduto[100];
-	char Categoria[100];
+	char nomeDoProduto[LIMIT];
+	char Categoria[LIMIT];
     // inserir e validar a quantidade
 	int valor_produto;
     int quant_atual;
     int estoque;
 
     // buscar
-    char buscar_categoria[100];
-    char buscar_Produto[100];
+    char buscar_categoria[LIMIT];
+    char buscar_Produto[LIMIT];
     //Continue
     char continuar[1];
 	// search
-    char buscar[100];
+    char buscar[LIMIT];
     // opcao
     int opcao;
 	//alts
-	char alt_produto[100];
-	char alt_categoria[100];
+	char alt_produto[LIMIT];
+	char alt_categoria[LIMIT];
 	//editions variables
 	char edit_produto;
-	char edit_categoria[100];
+	char edit_categoria[LIMIT];
 	
 
 
 }cadastro;
-
+int _id_STORAGE = 0;
 int main(void){
 	
 	setlocale(LC_ALL,"Portuguese");
