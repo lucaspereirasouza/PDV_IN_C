@@ -96,12 +96,29 @@ int main() {
 
     setlocale(LC_ALL, "Portuguese");
     do {
-        printf("1. Adicionar Produto\n");
-        printf("2. Listar Produtos\n");
-        printf("3. Atualizar Produto\n");
-        printf("4. Deletar Produto\n");
-        printf("5. Sair\n");
-        printf("Escolha uma opcao: ");
+    printf("\n   ---------------------PDV Hortifruti v0.1------------------");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |         MENU PRINCIPAL                                  |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |         1-Adicionar produto                             |");
+	printf("\n   |         2-Exibir lista de produtos                      |");
+	printf("\n   |         3-Buscar produto                                |");
+	printf("\n   |         4-Editar produto                                |");
+	printf("\n   |         5-Apagar produto                                |");
+	printf("\n   |         0-Encerrar aplicacao                            |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+ 	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
+	printf("\n\n\n Por favor, digite uma opção:");
         scanf("%d", &opcao);
 
         switch (opcao) {
