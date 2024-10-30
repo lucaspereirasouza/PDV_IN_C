@@ -1,8 +1,9 @@
 <br/>
 <div align="center">
-<h3 align="center">PDV IN C [W.I.P]</h3>
+<h3 align="center">PDV IN C</h3>
 <p align="center">
 Aplicação CRUD para ponto de vendas
+  <h4> sob licença MIT!</h3>
 <br/>
 <br/>
 </p>
