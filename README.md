@@ -3,7 +3,7 @@
 <h3 align="center">PDV IN C</h3>
 <p align="center">
 Aplicação CRUD para ponto de vendas
-  <h4> sob licença MIT!</h3>
+  <h4> Sob licença MIT!</h3>
 <br/>
 <br/>
 </p>
