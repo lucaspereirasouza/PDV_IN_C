@@ -108,25 +108,25 @@ void atualizarProduto(int id)
         if (produtos[i].id == id)
         {
             printf("Digite o novo nome do produto: ");
-            scanf("%s", produtos[i].produto);
+            scanf("%s", &produtos[i].produto);
 
             printf("Digite a nova categoria do produto: ");
-            scanf("%s", produtos[i].categoria);
+            scanf("%s", &produtos[i].categoria);
 
             printf("Digite a nova data de validade (DD-MM-AAAA): ");
-            scanf("%s", produtos[i].validade);
+            scanf("%s", &produtos[i].validade);
 
             printf("Digite um novo preço");
-            scanf("%f", produtos[i].preco);
+            scanf("%f", &produtos[i].preco);
 
             printf("Digite um novo valor de estotque");
-            scanf("%d", produtos[i].estoque);
+            scanf("%d", &produtos[i].estoque);
 
             printf("DIgite um novo valor de pesagem");
-            scanf("%f", produtos[i].valorPesagem);
+            scanf("%f", &produtos[i].valorPesagem);
 
             printf("Digite o tipo de Pesagem");
-            scanf("%s", produtos[i].granel);
+            scanf("%s", &produtos[i].granel);
 
             printf("Produto atualizado com sucesso!\n");
             return;
