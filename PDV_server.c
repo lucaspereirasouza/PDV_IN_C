@@ -98,7 +98,7 @@ void buscarProduto(int id){
         }
     }
    
-    }
+}
 
 // Função para atualizar produto
 void atualizarProduto(int id)
