@@ -196,6 +196,10 @@ int main()
             listarProdutos();
             break;
         case 3:
+            printf ("DIgite o ID do produto a ser Buscado: ");
+            scanf("%d", &id);
+            buscarProduto(id);
+            break;
             printf("Digite o ID do produto a ser atualizado: ");
             scanf("%d", &id);
             atualizarProduto(id);
