@@ -74,9 +74,9 @@ void listarProdutos()
 {
     for (int i = 0; i < numProdutos; i++)
     {
-        printf("ID: %d\nProduto: %s\nCategoria: %s\nValidade: %s\n\n",
+        printf("ID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",
                produtos[i].id, produtos[i].produto, produtos[i].categoria, produtos[i].validade);
-        printf("\n Preço: %f \n Quantidade no estoque: %d \n valor da pesagem: %f \n tipo de pesagem %s"
+        printf("\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem %s \n"
         ,produtos[i].preco, produtos[i].estoque, produtos[i].valorPesagem, produtos[i].granel);
 
     }
