@@ -162,7 +162,7 @@ int main()
     setlocale(LC_ALL, "Portuguese");
     do
     {
-        printf("\n   ---------------------PDV Hortifruti v0.1------------------");
+        printf("\n   ---------------------PDV Hortifruti v0.2-------------------");
         printf("\n   |                                                         |");
         printf("\n   |                                                         |");
         printf("\n   |         MENU PRINCIPAL                                  |");
