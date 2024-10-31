@@ -17,7 +17,7 @@ typedef struct
     int estoque;
     // tipo de pesagem
     float valorPesagem;
-    char granel[];
+    char granel[15];
 
 } Produto;
 
