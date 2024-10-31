@@ -43,29 +43,26 @@ void adicionarProduto()
 
     // Inseração dos dados com printf e scanf
     printf("Digite o nome do produto: ");
-    scanf("%s", novoProduto.produto);
+    scanf("%s", &novoProduto.produto);
 
     printf("Digite a categoria do produto: ");
-    scanf("%s", novoProduto.categoria);
+    scanf("%s", &novoProduto.categoria);
 
     printf("Digite a data de validade (DD-MM-AAAA): ");
-    scanf("%s", novoProduto.validade);
+    scanf("%s", &novoProduto.validade);
 
     // peso estoque e tipo
-    printf("Digite o preço do produto ");
-    scanf("%f", novoProduto.preco);
+    printf("Digite o preço do produto: ");
+    scanf("%f", &novoProduto.preco);
 
-    printf("Digite a quantidade em estoque ");
-    scanf("%d", novoProduto.estoque);
+    printf("Digite a quantidade em estoque: ");
+    scanf("%d", &novoProduto.estoque);
 
-    // indecisão sobre o enum e o tipo de calculo do peso em
-    // relação ao produto, eu posso fazer uma especie de multipicador em relação ao granel
-    // indeciso
-    printf("Digite o tipo de peso");
-    scanf("%s", novoProduto.granel);
+    printf("Digite o tipo de peso: ");
+    scanf("%s", &novoProduto.granel);
 
-    printf("Digite o valor do peso");
-    scanf("%s", novoProduto.valorPesagem);
+    printf("Digite o valor do peso: ");
+    scanf("%f", &novoProduto.valorPesagem);
 
     // inserção em array da lista
     produtos[numProdutos++] = novoProduto;
