@@ -98,7 +98,7 @@ void atualizarProduto(int id) {
     printf("Produto não encontrado.\n");
 }
 
-void transacaoPedido(}{}
+void transacaoPedido(){}
 void menuCaixa(){
     int opcao;
     printf("Menu do caixa");
