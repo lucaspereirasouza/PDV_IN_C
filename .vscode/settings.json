@@ -59,6 +59,7 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "locale.h": "c",
-    "ratio": "cpp"
+    "ratio": "cpp",
+    "stdlib.h": "c"
   }
 }
