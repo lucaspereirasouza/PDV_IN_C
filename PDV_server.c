@@ -21,7 +21,7 @@ typedef struct
 
 } Produto;
 
-#define MAX_PRODUTOS 100
+#define MAX_PRODUTOS 255
 
 // Declaração de variáveis globais
 Produto produtos[MAX_PRODUTOS];
