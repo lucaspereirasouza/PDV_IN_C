@@ -44,8 +44,6 @@ Produto produtos[MAX_PRODUTOS];
 int proxId = 1;
 int numProdutos = 0;
 
-
-
 // Função adicionar produto
 void adicionarProduto() {
     // Validação para evitar sobrecargar de buffer
