@@ -200,16 +200,17 @@ int main()
             scanf("%d", &id);
             buscarProduto(id);
             break;
+        case 4:
             printf("Digite o ID do produto a ser atualizado: ");
             scanf("%d", &id);
             atualizarProduto(id);
             break;
-        case 4:
+        case 5:
             printf("Digite o ID do produto a ser deletado: ");
             scanf("%d", &id);
             deletarProduto(id);
             break;
-        case 5:
+        case 0:
             printf("Saindo...\n");
             break;
         default:
