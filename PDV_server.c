@@ -35,7 +35,7 @@ void adicionarProduto()
     if (numProdutos >= MAX_PRODUTOS)
     {
         printf("Limite de produtos atingido.\n");
-        return 1;
+        return;
     }
     // Inicialização e auto incrementação do id
     Produto novoProduto;
