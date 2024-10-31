@@ -84,6 +84,16 @@ void listarProdutos()
 void buscarProduto(int id){
     // Buscar por id
     // validação
+    for (int i = 0; i < numProdutos; i++)
+    {
+        if (produtos[i].id == id)
+        {
+        printf("ID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",
+               produtos[i].id, produtos[i].produto, produtos[i].categoria, produtos[i].validade);
+        printf("\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem %s \n"
+        ,produtos[i].preco, produtos[i].estoque, produtos[i].valorPesagem, produtos[i].granel);
+        }
+    }
 
 // Função para atualizar produto
 void atualizarProduto(int id)
