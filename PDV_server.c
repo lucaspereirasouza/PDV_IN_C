@@ -82,6 +82,8 @@ void listarProdutos()
     }
 }
 void buscarProduto(int id){
+    // Buscar por id
+    // validação
 
 // Função para atualizar produto
 void atualizarProduto(int id)
