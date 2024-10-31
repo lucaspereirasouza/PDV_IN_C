@@ -180,9 +180,6 @@ int main()
         printf("\n   |                                                         |");
         printf("\n   |                                                         |");
         printf("\n   |                                                         |");
-        printf("\n   |                                                         |");
-        printf("\n   |                                                         |");
-        printf("\n   |                                                         |");
         printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
         printf("\n\n\n Por favor, digite uma opção:");
         scanf("%d", &opcao);
