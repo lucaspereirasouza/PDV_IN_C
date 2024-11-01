@@ -71,11 +71,14 @@ void adicionarProduto()
     //escrever todo os conteudos
     // inserção em array da lista
     produtos[numProdutos++] = novoProduto;
+ 
+
     fprintf(pFile,"--------------------------");
     fprintf(pFile,"\nID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",novoProduto.id, novoProduto.produto, novoProduto.categoria, 
     novoProduto.validade);
     fprintf(pFile,"\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem: %s \n",novoProduto.preco, 
     novoProduto.estoque, novoProduto.valorPesagem, novoProduto.granel);
+
     //fechar
     printf("Produto adicionado com sucesso!\n");
     fclose(pFile);
