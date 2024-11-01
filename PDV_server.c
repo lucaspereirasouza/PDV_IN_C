@@ -100,6 +100,11 @@ void listarProdutos()
 void buscarProduto(int id){
 
     // Buscar por id
+
+    //abrir arquivo
+    FILE *openFile;
+    openFile = fopen("produtos.txt", "r");
+    char content[MAX_PRODUTOS*numProdutos];
     // validação
     
     for (int i = 0; i < numProdutos; i++)
@@ -169,11 +174,32 @@ void deletarProduto(int id)
     printf("Produto não encontrado.\n");
 }
 
+int loadid(int id){
+    int maxId=0;
+    FILE *idFile;
+    idFile = fopen("produtos.txt","a");
+    if (idFile == NULL) {
+            printf("Erro ao abrir o arquivo!\nCriando um arquivo");
+            FILE *createFile;
+            createFile = fopen("produtos.txt","w");
+            fclose(createFile);
+            return -1;
+    }
+    while (fscanf(idFile, "%d", &id) == 1){
+        if (id > maxId) {
+            maxId = id;
+        }
+    }
+    fclose(idFile);
+    return maxId;
+}
+
 // Função principal
 int main()
 {
     int opcao, id;
-
+    id = loadid(id);
+    printf("%d",id);
     setlocale(LC_ALL, "Portuguese");
     do
     {
