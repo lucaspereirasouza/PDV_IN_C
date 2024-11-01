@@ -64,6 +64,11 @@ void adicionarProduto()
     printf("Digite o valor do peso: ");
     scanf("%f", &novoProduto.valorPesagem);
 
+    //incializar o arquivo aqui
+    FILE *pFile;
+    pFile = fopen("produtos.txt", "a");
+
+    //escrever todo os conteudos
     // inserção em array da lista
     produtos[numProdutos++] = novoProduto;
     printf("Produto adicionado com sucesso!\n");
