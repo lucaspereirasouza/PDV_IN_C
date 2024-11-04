@@ -185,7 +185,7 @@ int loadid(int id){
             fclose(createFile);
             return -1;
     }
-    while (fscanf(idFile, "%d", &id) == 1){
+    while (fscanf(idFile, "ID: %d", &id) == 1){
         if (id > maxId) {
             maxId = id;
         }
