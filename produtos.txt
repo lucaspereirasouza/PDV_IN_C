@@ -1,9 +1,0 @@
---------------------------
-ID: 1
-Produto: frangoCoxa
-Categoria: carne
-Validade: 100290
-Preço: 12.25 
-Quantidade no estoque: 30 
-valor da pesagem: 10 
-tipo de pesagem: quantidade 
