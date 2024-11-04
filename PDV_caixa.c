@@ -6,13 +6,10 @@
 // formatação da linguagem utilizada pt-br
 #include <locale.h>
 
-// Definindo a struct Produto
 
-//receber produto
-
-#define LIST_LIMIT 10
-//
-
+#define MAX_PRODUTOS 100
+#define LIMIT_VENDAS 1000
+#define LIMIT_LISTA 255
 
 typedef struct {
     int id;
@@ -29,54 +26,51 @@ typedef struct {
 typedef struct
 {
     int id_venda;
-    char lista[LIST_LIMIT][50];
+    char lista[LIMIT_LISTA];
     float calculo;
     float peso;
 
 
 } Venda;
 
-
-#define MAX_PRODUTOS 100
-
 // Declaração de variáveis globais
 Produto produtos[MAX_PRODUTOS];
-int proxId = 1;
+Venda vendas[LIMIT_VENDAS];
 int numProdutos = 0;
 
-// Função adicionar produto
-void adicionarProduto() {
-    // Validação para evitar sobrecargar de buffer
-    if (numProdutos >= MAX_PRODUTOS) {
-        printf("Limite de produtos atingido.\n");
-        return 1;
+//Transação
+void registerTransacao(int id, int quantidade, int estoque, Produto produtos[]){
+   char opt;
+   while(&opt=="n"){
+   for (int i = 0; i < numProdutos; i++) {
+        if (produtos[i].id == estoque) {
+            if (produtos[i].estoque >= quantidade) {
+                produtos[i].estoque -= quantidade;
+                printf("Venda registrada: %d unidades de %s vendidas.\n", quantidade, produtos[i].produto);
+            } else {
+                printf("Estoque insuficiente para %s.\n", produtos[i].produto);
+            }
+            return;
+        }
     }
-    // Inicialização e auto incrementação do id
-    Produto novoProduto;
-    novoProduto.id = proxId++;
-
-    // Inseração dos dados com printf e scanf
-    printf("Digite o nome do produto: ");
-    scanf("%s", novoProduto.produto);
-    
-    printf("Digite a categoria do produto: ");
-    scanf("%s", novoProduto.categoria);
-    
-    printf("Digite a data de validade (DD-MM-AAAA): ");
-    scanf("%s", novoProduto.validade);
-
-    // inserção em array da lista
-    produtos[numProdutos++] = novoProduto;
-    printf("Produto adicionado com sucesso!\n");
+    printf("Gostaria continura a transação? y/n");
+    scanf("%s",opt);
+   }
+    printf("Produto não encontrado.\n");
 }
-
-// Função para listar produtos
-void listarProdutos() {
+//Atualização do estoque
+void atualizarEstoque(Produto produtos[], int numProdutos) {
+    FILE *fileProduto = fopen("produtos.txt", "w"); // Abre o arquivo para escrita
+    if (fileProduto == NULL) {
+            printf("Erro ao abrir o arquivo!");
+            return -1;
+    }
     for (int i = 0; i < numProdutos; i++) {
-        printf("ID: %d\nProduto: %s\nCategoria: %s\nValidade: %s\n\n", 
-                produtos[i].id, produtos[i].produto, produtos[i].categoria, produtos[i].validade);
+        fprintf(fileProduto, "%d %s %d\n", produtos[i].id, produtos[i].produto, produtos[i].estoque);
     }
+    fclose(fileProduto);
 }
+
 
 // Função para atualizar produto
 void atualizarProduto(int id) {
@@ -98,21 +92,117 @@ void atualizarProduto(int id) {
     printf("Produto não encontrado.\n");
 }
 
+int loadidByFile(char fileName[]){
+    int maxId=0,id=0;;
+    FILE *idFile;
+    idFile = fopen(fileName,"r");
+    if (idFile == NULL) {
+            printf("Erro ao abrir o arquivo!\nCriando um arquivo");
+            FILE *createFile;
+            createFile = fopen("produtos.txt","w");
+            fclose(createFile);
+            return -1;
+    }
+    while (fscanf(idFile, "ID: %d", &id) == 1){
+        if (id > maxId) {
+            maxId = id;
+        }
+    }
+    fclose(idFile);
+    return maxId;
+}
+
 void transacaoPedido(){}
 void menuCaixa(){
     int opcao;
-    printf("Menu do caixa");
+    int id,idVendas;
+    
+    id = loadidByFile("produtos.txt");
+    idVendas = loadidByFile("vendas.txt");
+    
+    printf("%d | %d", &id,&idVendas);
 
-    // Display menu
+     // Display menu
+
+    printf("\n   -----------------PDV Hortifruti caixa v0.1-----------------");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
+	printf("\n   |         Bem vindo! Por favor, escolha uma das opçõoes   |");
+	printf("\n   |         1. Registro da venda                            |");
+	printf("\n   |         2. Consulta de preço                            |");
+	printf("\n   |         3. Listagem dos produtos                        |");
+	printf("\n   |         4. Preço e calculo                              |");
+	printf("\n   |         0. encerrar aplicação                           |");
+    printf("\n   |                                                         |");
+	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
+    printf("\n\n\n Por favor, digite uma opção:\n");
 
     //switch
+    scanf("%d",&opcao);
+    //switch e opcoes
+    switch (opcao)
+    {
+    case 1:
+        registroVenda();
+        break;
+    case 2:
+         consultaPreco();
+        break;
+    case 3:
+        listagemProduto();
+        break;
+    case 4:
+        precoCalculo();
+        break;
+    case 0:
+        return;
+        
+    default:
+        printf("opção invalida.\n");
+    } while (opcao != 0);
+
+    return;
     //opcoes
 
     //Transação de pedidos > retiro de estoque e registro da venda
     
 }
 
-void registroVenda(){}
+
+//looping EOF e carregamento dos protudos
+loadId(Produto produtos[]){
+
+    FILE *fileProdutos;
+    fileProdutos = fopen("produtos.txt","r");
+
+    int i=0;
+    while (fscanf(fileProdutos,"ID: %d", &produtos[i].id)!=EOF)
+    {
+        i++;
+    }
+    fclose(fileProdutos);
+    return i;
+    
+}
+
+
+void registroVenda(){
+    FILE *fileProdutos;
+    FILE *fileVendas;
+    fileProdutos = fopen("produtos.txt","w");
+    fileVendas = fopen("vendas.txt","w");
+
+    //validar se há algum arquivo
+    
+
+    
+    // vender produtos
+    // pego os produtos pelo arquivo ou seu id
+    // pergunto quantos
+    // e se repito o processo
+
+
+}
 void consultaPreco(){}
 void listagemProduto(){}
 void precoCalculo(){}
@@ -122,10 +212,10 @@ void menuEstacao(){
 
     // Display menu
 
-     printf("\n   ---------------------PDV Hortifruti v0.1------------------");
+    printf("\n   ------------------PDV Hortifruti v0.1 estação--------------");
 	printf("\n   |                                                         |");
 	printf("\n   |                                                         |");
-	printf("\n   |         Bem vindo! Por favor, escolha uma das opçõ      |");
+	printf("\n   |         Bem vindo! Por favor, escolha uma das opçõoes   |");
 	printf("\n   |         1. Registro da venda                            |");
 	printf("\n   |         2. Consulta de preço                            |");
 	printf("\n   |         3. Listagem dos produtos                        |");
@@ -185,15 +275,15 @@ int main() {
 	printf("\n   |                                                         |");
 	printf("\n   |                                                         |");
 	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
-	printf("\n\n\n Por favor, digite uma opção:");
+	printf("\n\n\n Por favor, digite uma opção:\n");
         scanf("%d", &opt);
 
         switch (opt) {
             case 1:
-                menuCaixa();
+                menuEstacao();
                 break;
             case 2:
-                menuEstacao();
+                menuCaixa();
                 break;
             default:
                 printf("Opção invalida.\n");
