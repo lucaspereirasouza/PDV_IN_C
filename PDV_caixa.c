@@ -6,7 +6,6 @@
 // formatação da linguagem utilizada pt-br
 #include <locale.h>
 
-
 #define MAX_PRODUTOS 100
 #define LIMIT_VENDAS 1000
 #define LIMIT_LISTA 255
@@ -38,7 +37,7 @@ Produto produtos[MAX_PRODUTOS];
 Venda vendas[LIMIT_VENDAS];
 int numProdutos = 0;
 
-//Transação
+// Transação
 void registerTransacao(int id, int quantidade, int estoque, Produto produtos[]){
    char opt;
    while(&opt=="n"){
@@ -58,7 +57,7 @@ void registerTransacao(int id, int quantidade, int estoque, Produto produtos[]){
    }
     printf("Produto não encontrado.\n");
 }
-//Atualização do estoque
+// Atualização do estoque
 void atualizarEstoque(Produto produtos[], int numProdutos) {
     FILE *fileProduto = fopen("produtos.txt", "w"); // Abre o arquivo para escrita
     if (fileProduto == NULL) {
@@ -120,21 +119,21 @@ void menuCaixa(){
     id = loadidByFile("produtos.txt");
     idVendas = loadidByFile("vendas.txt");
     
-    printf("%d | %d", &id,&idVendas);
+    //printf("%d | %d", &id,&idVendas);
 
      // Display menu
 
-    printf("\n   -----------------PDV Hortifruti caixa v0.1-----------------");
+    printf("\n   -----------------PDV Hortifruti caixa v0.2-----------------");
 	printf("\n   |                                                         |");
 	printf("\n   |                                                         |");
-	printf("\n   |         Bem vindo! Por favor, escolha uma das opçõoes   |");
-	printf("\n   |         1. Registro da venda                            |");
-	printf("\n   |         2. Consulta de preço                            |");
-	printf("\n   |         3. Listagem dos produtos                        |");
-	printf("\n   |         4. Preço e calculo                              |");
+	printf("\n   |         Bem vindo! Por favor, para começar,             |");
+	printf("\n   |         selecione 1                                     |");
+	printf("\n   |         1. Calculo de valor e compra                    |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
 	printf("\n   |         0. encerrar aplicação                           |");
     printf("\n   |                                                         |");
-	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
+	printf("\n   ----------------------------------------------------------");
     printf("\n\n\n Por favor, digite uma opção:\n");
 
     //switch
@@ -144,15 +143,6 @@ void menuCaixa(){
     {
     case 1:
         registroVenda();
-        break;
-    case 2:
-         consultaPreco();
-        break;
-    case 3:
-        listagemProduto();
-        break;
-    case 4:
-        precoCalculo();
         break;
     case 0:
         return;
@@ -203,9 +193,9 @@ void registroVenda(){
 
 
 }
+void calcPesagem(){}
 void consultaPreco(){}
-void listagemProduto(){}
-void precoCalculo(){}
+
 
 void menuEstacao(){
     int opcao;
@@ -216,10 +206,10 @@ void menuEstacao(){
 	printf("\n   |                                                         |");
 	printf("\n   |                                                         |");
 	printf("\n   |         Bem vindo! Por favor, escolha uma das opçõoes   |");
-	printf("\n   |         1. Registro da venda                            |");
-	printf("\n   |         2. Consulta de preço                            |");
-	printf("\n   |         3. Listagem dos produtos                        |");
-	printf("\n   |         4. Preço e calculo                              |");
+	printf("\n   |         1. pesagem                                      |");
+	printf("\n   |         2. cálculo do preço por peso                    |");
+	printf("\n   |                                                         |");
+	printf("\n   |                                                         |");
 	printf("\n   |         0. encerrar aplicação                           |");
     printf("\n   |                                                         |");
 	printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
@@ -229,17 +219,12 @@ void menuEstacao(){
     switch (opcao)
     {
     case 1:
-        registroVenda();
+        calcPesagem();
         break;
     case 2:
-         consultaPreco();
+        consultaPreco();
         break;
-    case 3:
-        listagemProduto();
-        break;
-    case 4:
-        precoCalculo();
-        break;
+
     case 0:
         return 0;
         

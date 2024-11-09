@@ -21,6 +21,7 @@ typedef struct
 
 } Produto;
 
+
 #define MAX_PRODUTOS 255
 
 // Declaração de variáveis globais
@@ -31,15 +32,26 @@ int numProdutos = 0;
 // Função adicionar produto
 void adicionarProduto()
 {
-    // Validação para evitar sobrecargar de buffer
+
     if (numProdutos >= MAX_PRODUTOS)
     {
         printf("Limite de produtos atingido.\n");
         return;
     }
-    // Inicialização e auto incrementação do id
+
     Produto novoProduto;
     novoProduto.id = proxId++;
+
+    FILE *pFile;
+    pFile = fopen("produtos.txt", "a");
+    
+
+    if (pFile == NULL) 
+    {
+        printf("Erro ao abrir produto");
+        return;
+    }
+
 
     // Inseração dos dados com printf e scanf
     printf("Digite o nome do produto: ");
@@ -64,22 +76,16 @@ void adicionarProduto()
     printf("Digite o valor do peso: ");
     scanf("%f", &novoProduto.valorPesagem);
 
-    //incializar o arquivo aqui
-    FILE *pFile;
-    pFile = fopen("produtos.txt", "a");
-
-    //escrever todo os conteudos
-    // inserção em array da lista
-    produtos[numProdutos++] = novoProduto;
+    
  
-
     fprintf(pFile,"--------------------------");
     fprintf(pFile,"\nID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",novoProduto.id, novoProduto.produto, novoProduto.categoria, 
     novoProduto.validade);
     fprintf(pFile,"\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem: %s \n",novoProduto.preco, 
     novoProduto.estoque, novoProduto.valorPesagem, novoProduto.granel);
 
-    //fechar
+
+    produtos[numProdutos++] = novoProduto;
     printf("Produto adicionado com sucesso!\n");
     fclose(pFile);
 }
@@ -87,42 +93,132 @@ void adicionarProduto()
 // Função para listar produtos
 void listarProdutos()
 {
-    for (int i = 0; i < numProdutos; i++)
-    {
-        printf("ID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",
-               produtos[i].id, produtos[i].produto, produtos[i].categoria, produtos[i].validade);
-        printf("\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem %s \n"
-        ,produtos[i].preco, produtos[i].estoque, produtos[i].valorPesagem, produtos[i].granel);
-
+    
+//arq
+    FILE *pFile;
+    pFile = fopen("produtos.txt", "r");
+//val
+    if (pFile == NULL){
+        printf("Erro ao carregar o arquivo");
+        return;
     }
-}
-
-void buscarProduto(int id){
-
-    // Buscar por id
-
-    //abrir arquivo
-    FILE *openFile;
-    openFile = fopen("produtos.txt", "r");
-    char content[MAX_PRODUTOS*numProdutos];
-    // validação
+//loadfile
+    loadDataToProdutos();
     
     for (int i = 0; i < numProdutos; i++)
     {
-        if (produtos[i].id == id)
-        {
         printf("ID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",
                produtos[i].id, produtos[i].produto, produtos[i].categoria, produtos[i].validade);
         printf("\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem %s \n"
         ,produtos[i].preco, produtos[i].estoque, produtos[i].valorPesagem, produtos[i].granel);
-        }
+
     }
+    //fclose
+    return;
+}
+
+void returnProdutoById(){
+        int id;
+        printf("insira o id do produto");
+        scanf("%i", &id);
+
+        //arq
+    FILE *pFile;
+    pFile = fopen("produtos.txt", "r");
+//val
+    if (pFile == NULL){
+        printf("Erro ao carregar o arquivo");
+        return;
+    }   
+
+        printf("ID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",
+               produtos[id].id, produtos[id].produto, produtos[id].categoria, produtos[id].validade);
+        printf("\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem %s \n"
+        ,produtos[id].preco, produtos[id].estoque, produtos[id].valorPesagem, produtos[id].granel);
+
+        
+
+}
+
+void returnProdutoByName(){
+     char name[50];
+        printf("\n insira o nome");
+        scanf("%s",&name);
+}
+
+void buscarProduto(){
+
+    int opcao;
+    printf("Gostaria de buscar o produto pelo nome ou pelo id?\n(1)nome\n(2)id");
+    scanf("%d",opcao);
+
+    switch (opcao)
+    {
+    case 1:
+        returnProdutoByName();
+        break;
+    case 2:
+    
+        returnProdutoById();
+    default:
+        break;
+    }
+
+
    
 }
 
+void loadDataToProdutos(){
+
+    int id;
+    FILE *idFile;
+    char content[1048];
+    Produto rs;
+    idFile = fopen("produtos.txt","r");
+    if (idFile == NULL) {
+            printf("Erro ao abrir o arquivo!");
+            return;
+    }
+    fgets(content,1048,idFile);
+    while (fscanf(idFile, "ID: %d", &id) == 1){
+        id++;
+        
+        rs.id=id;
+        // colunas
+
+        produtos[id] = rs;
+    }
+    fclose(idFile);
+}
+
+void saveDataFromProdutos(Produto produtos[]){
+
+
+    int id;
+    FILE *pFile;
+    pFile = fopen("produtos.txt", "w");
+
+    int max = sizeof(produtos);
+
+    while (id >= max){
+        printf("%d",&id);
+        id++;
+        fprintf(pFile,"--------------------------");
+        fprintf(pFile,"\nID: %d\nProduto: %s\nCategoria: %s\nValidade: %s",produtos[id].id, produtos[id].produto, produtos[id].categoria, 
+        produtos[id].validade);
+        fprintf(pFile,"\nPreço: %.2f \nQuantidade no estoque: %d \nvalor da pesagem: %2.f \ntipo de pesagem: %s \n",produtos[id].preco, 
+        produtos[id].estoque, produtos[id].valorPesagem, produtos[id].granel);
+     }
+    printf("Produto adicionado com sucesso!\n");
+    fclose(pFile);
+}
+
 // Função para atualizar produto
-void atualizarProduto(int id)
+void atualizarProduto()
 {
+    int id;
+    printf("Digite o ID do produto a ser atualizado: ");
+    scanf("%d", &id);
     for (int i = 0; i < numProdutos; i++)
     {
         if (produtos[i].id == id)
@@ -148,6 +244,10 @@ void atualizarProduto(int id)
             printf("Digite o tipo de Pesagem");
             scanf("%s", &produtos[i].granel);
 
+            // modify
+            FILE *fileProduto;
+            fileProduto = fopen("produtos.txt","w");
+
             printf("Produto atualizado com sucesso!\n");
             return;
         }
@@ -156,8 +256,12 @@ void atualizarProduto(int id)
 }
 
 // Função para deletar produto
-void deletarProduto(int id)
+void deletarProduto()
 {
+    int id;
+    printf("Digite o ID do produto a ser deletado: ");
+            scanf("%d", &id);
+
     for (int i = 0; i < numProdutos; i++)
     {
         if (produtos[i].id == id)
@@ -197,13 +301,13 @@ int loadid(int id){
 // Função principal
 int main()
 {
-    int opcao, id;
-    id = loadid(id);
+    int opcao, id=0;
+    proxId = loadid(proxId);
     printf("%d",id);
     setlocale(LC_ALL, "Portuguese");
     do
     {
-        printf("\n   ---------------------PDV Hortifruti v0.2-------------------");
+        printf("\n   -----------------------------------------------------------");
         printf("\n   |                                                         |");
         printf("\n   |                                                         |");
         printf("\n   |         MENU PRINCIPAL                                  |");
@@ -221,7 +325,7 @@ int main()
         printf("\n   |                                                         |");
         printf("\n   |                                                         |");
         printf("\n   |                                                         |");
-        printf("\n   ---------------------PDV Hortifruti v0.1-------------------");
+        printf("\n   ----------------=Hortifruti PDV Server v0.2=---------------");
         printf("\n\n\n Por favor, digite uma opção:");
         scanf("%d", &opcao);
 
@@ -234,22 +338,19 @@ int main()
             listarProdutos();
             break;
         case 3:
-            printf ("DIgite o ID do produto a ser Buscado: ");
-            scanf("%d", &id);
-            buscarProduto(id);
+            buscarProduto();
             break;
         case 4:
-            printf("Digite o ID do produto a ser atualizado: ");
-            scanf("%d", &id);
-            atualizarProduto(id);
+            atualizarProduto();
             break;
         case 5:
-            printf("Digite o ID do produto a ser deletado: ");
-            scanf("%d", &id);
-            deletarProduto(id);
+            
+            deletarProduto();
             break;
         case 0:
             printf("Saindo...\n");
+            // teste para sair da aplicação
+            return 0;
             break;
         default:
             printf("Opcao invalida.\n");
