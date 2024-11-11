@@ -1,6 +1,6 @@
 <br/>
 <div align="center">
-<h3 align="center">PDV IN C</h3>
+<h3 align="center">PDV IN C, bleed-edge</h3>
 <p align="center">
 Aplicação CRUD para ponto de vendas
   <h4> Sob licença MIT!</h3>
