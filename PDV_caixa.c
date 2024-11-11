@@ -38,58 +38,9 @@ Venda vendas[LIMIT_VENDAS];
 int numProdutos = 0;
 
 // Transação
-void registerTransacao(int id, int quantidade, int estoque, Produto produtos[]){
-   char opt;
-   while(&opt=="n"){
-   for (int i = 0; i < numProdutos; i++) {
-        if (produtos[i].id == estoque) {
-            if (produtos[i].estoque >= quantidade) {
-                produtos[i].estoque -= quantidade;
-                printf("Venda registrada: %d unidades de %s vendidas.\n", quantidade, produtos[i].produto);
-            } else {
-                printf("Estoque insuficiente para %s.\n", produtos[i].produto);
-            }
-            return;
-        }
-    }
-    printf("Gostaria continura a transação? y/n");
-    scanf("%s",opt);
-   }
-    printf("Produto não encontrado.\n");
-}
+
 // Atualização do estoque
-void atualizarEstoque(Produto produtos[], int numProdutos) {
-    FILE *fileProduto = fopen("produtos.txt", "w"); // Abre o arquivo para escrita
-    if (fileProduto == NULL) {
-            printf("Erro ao abrir o arquivo!");
-            return -1;
-    }
-    for (int i = 0; i < numProdutos; i++) {
-        fprintf(fileProduto, "%d %s %d\n", produtos[i].id, produtos[i].produto, produtos[i].estoque);
-    }
-    fclose(fileProduto);
-}
 
-
-// Função para atualizar produto
-void atualizarProduto(int id) {
-    for (int i = 0; i < numProdutos; i++) {
-        if (produtos[i].id == id) {
-            printf("Digite o novo nome do produto: ");
-            scanf("%s", produtos[i].produto);
-            
-            printf("Digite a nova categoria do produto: ");
-            scanf("%s", produtos[i].categoria);
-            
-            printf("Digite a nova data de validade (DD-MM-AAAA): ");
-            scanf("%s", produtos[i].validade);
-
-            printf("Produto atualizado com sucesso!\n");
-            return;
-        }
-    }
-    printf("Produto não encontrado.\n");
-}
 
 int loadidByFile(char fileName[]){
     int maxId=0,id=0;;
@@ -176,23 +127,6 @@ loadId(Produto produtos[]){
 }
 
 
-void registroVenda(){
-    FILE *fileProdutos;
-    FILE *fileVendas;
-    fileProdutos = fopen("produtos.txt","w");
-    fileVendas = fopen("vendas.txt","w");
-
-    //validar se há algum arquivo
-    
-
-    
-    // vender produtos
-    // pego os produtos pelo arquivo ou seu id
-    // pergunto quantos
-    // e se repito o processo
-
-
-}
 void calcPesagem(){}
 void consultaPreco(){}
 
